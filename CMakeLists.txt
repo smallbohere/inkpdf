@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.21)
+project(InkPDF LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Pdf)   # only two Qt modules, nothing else
+add_executable(InkPDF WIN32 main.cpp)
+if(MSVC)
+  target_compile_options(InkPDF PRIVATE /utf-8 /O1 /Gy /Gw)
+  target_link_options(InkPDF PRIVATE /OPT:REF /OPT:ICF)
+endif()
+target_link_libraries(InkPDF PRIVATE Qt6::Widgets Qt6::Pdf)
