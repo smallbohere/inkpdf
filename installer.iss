@@ -18,6 +18,8 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 UninstallDisplayIcon={app}\InkPDF.exe
 WizardStyle=modern
+SetupIconFile=inkpdf.ico
+AppPublisher=InkPDF
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a desktop shortcut"; Flags: unchecked

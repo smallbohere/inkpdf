@@ -4,7 +4,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Pdf)   # only two Qt modules, nothing else
-add_executable(InkPDF WIN32 main.cpp)
+set(SRC main.cpp canvas.h model.h logo.h)
+if(WIN32)
+  enable_language(RC)
+  list(APPEND SRC inkpdf.rc)   # embeds the logo as the .exe icon
+endif()
+add_executable(InkPDF WIN32 ${SRC})
 if(MSVC)
   target_compile_options(InkPDF PRIVATE /utf-8 /O1 /Gy /Gw)
   target_link_options(InkPDF PRIVATE /OPT:REF /OPT:ICF)
